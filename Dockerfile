@@ -17,7 +17,7 @@ nginx=stable && \
 add-apt-repository ppa:nginx/$nginx && \
 apt-get update && \
 apt-get upgrade -y && \
-BUILD_PACKAGES="supervisor nginx php5-fpm git php5-mysql php-apc php5-curl php5-gd php5-intl php5-mcrypt php5-memcache php5-sqlite php5-tidy php5-xmlrpc php5-xsl php5-pgsql php5-mongo php5-ldap pwgen" && \
+BUILD_PACKAGES="supervisor nginx imagemagick memcached php5-fpm git php5-mysql php-apc php5-curl php5-gd php5-intl php5-mcrypt php5-memcache php5-sqlite php5-tidy php5-xmlrpc php5-xsl php5-pgsql php5-mongo php5-imagick php5-memcached php5-xdebug php5-ldap pwgen" && \
 apt-get -y install $BUILD_PACKAGES && \
 apt-get remove --purge -y software-properties-common && \
 apt-get autoremove -y && \
@@ -73,7 +73,7 @@ ADD scripts/start.sh /start.sh
 RUN chmod 755 /start.sh
 
 # Setup Volume
-VOLUME ["/usr/share/nginx/html"]
+VOLUME ["/usr/share/nginx/html", "/var/www", "/etc/nginx/sites-enabled"]
 
 # add test PHP file
 ADD src/index.php /usr/share/nginx/html/index.php
