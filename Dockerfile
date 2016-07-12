@@ -28,6 +28,11 @@ rm -rf /var/lib/apt/lists/* && \
 rm -rf /usr/share/man/?? && \
 rm -rf /usr/share/man/??_*
 
+# phpunit
+RUN wget https://phar.phpunit.de/phpunit-old.phar && \
+chmod +x phpunit-old.phar  && \
+mv phpunit-old.phar /usr/local/bin/phpunit
+
 # tweak nginx config
 RUN sed -i -e"s/worker_processes  1/worker_processes 5/" /etc/nginx/nginx.conf && \
 sed -i -e"s/keepalive_timeout\s*65/keepalive_timeout 2/" /etc/nginx/nginx.conf && \
